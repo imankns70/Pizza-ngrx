@@ -7,7 +7,7 @@ export const LOAD_PIZZAS_FAIL = '[Products] Load Pizzas Fail';
 export const LOAD_PIZZAS_SUCCESS = '[Products] Load Pizzas Success';
 
 
-export class LoadPizza implements Action {
+export class LoadPizzas implements Action {
     readonly type = LOAD_PIZZAS;
 }
 export class LoadPizzasFail implements Action {
@@ -23,4 +23,4 @@ export class LoadPizzasSuccess implements Action {
     }
 }
 
-export type PizzasAction = LoadPizza | LoadPizzasFail | LoadPizzasSuccess;
+export type PizzasAction = LoadPizzas | LoadPizzasFail | LoadPizzasSuccess;
