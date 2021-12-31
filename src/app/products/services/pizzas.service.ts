@@ -13,8 +13,8 @@ import { ApiResult } from '../models/api-result';
 })
 export class PizzasService {
   constructor(private http: HttpClient) { }
-  //apiUrl = 'https://localhost:44395/api/pizza';
-  apiUrl = 'https://localhost:44341/api/pizza';
+  apiUrl = 'https://localhost:44395/api/pizza';
+  //apiUrl = 'https://localhost:44341/api/pizza';
 
   getPizzas(): Observable<Pizza[]> {
 
