@@ -1,31 +1,39 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from "@angular/router";
-
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { Observable, of } from "rxjs";
-import { tap, filter, take, switchMap, catchError } from "rxjs/operators";
-
+import { Observable } from "rxjs";
+import { tap, map, filter, take, switchMap } from "rxjs/operators";
 import * as fromStore from '../store';
+import { Pizza } from "../models/pizza.model";
 
 @Injectable()
-
-export class PizzasGuard implements CanActivate {
-
+export class PizzaExistsGuard implements CanActivate {
     constructor(private store: Store<fromStore.ProductsState>) { }
+
+
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
         boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+
         return this.checkStore().pipe(
-            switchMap(() => of(true)),
-            catchError(() => of(false))
+            switchMap(() => {
+                const id = parseInt(route.params.pizzaId, 10);
+                return this.hashPizza(id);
+            })
         )
+
     }
-
-
+    hashPizza(id: number): Observable<boolean> {
+        return this.store
+            .select(fromStore.getPizzasEntities).pipe(
+                map((entities: { [id: number]: Pizza }) => !!entities[id]),
+                take(1)
+            )
+    }
     checkStore(): Observable<boolean> {
         return this.store.select(fromStore.getPizzasLoaded)
             .pipe(
                 tap(loaded => {
-             
+ 
                     if (!loaded) {
 
                         this.store.dispatch(new fromStore.LoadPizzas())

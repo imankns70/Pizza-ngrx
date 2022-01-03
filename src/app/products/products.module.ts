@@ -19,7 +19,6 @@ import * as fromContainers from './containers';
 import * as fromServices from './services';
 
 // guards
-
 import * as fromGuards from './guards';
 
 // routes
@@ -31,11 +30,12 @@ export const ROUTES: Routes = [
   },
   {
     path: 'new',
-    canActivate: [fromGuards.PizzasGuard],
+    canActivate: [fromGuards.PizzasGuard, fromGuards.ToppingsGuard],
     component: fromContainers.ProductItemComponent,
   },
   {
     path: ':pizzaId',
+    canActivate: [fromGuards.PizzaExistsGuard, fromGuards.ToppingsGuard],
     component: fromContainers.ProductItemComponent,
   },
 ];

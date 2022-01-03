@@ -9,7 +9,7 @@ import * as fromStore from '../store';
 
 @Injectable()
 
-export class PizzasGuard implements CanActivate {
+export class ToppingsGuard implements CanActivate {
 
     constructor(private store: Store<fromStore.ProductsState>) { }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
@@ -22,13 +22,13 @@ export class PizzasGuard implements CanActivate {
 
 
     checkStore(): Observable<boolean> {
-        return this.store.select(fromStore.getPizzasLoaded)
+        return this.store.select(fromStore.getToppingsLoaded)
             .pipe(
                 tap(loaded => {
              
                     if (!loaded) {
 
-                        this.store.dispatch(new fromStore.LoadPizzas())
+                        this.store.dispatch(new fromStore.LoadToppings())
                     }
                 }),
                 // if loaded is false then the filter prevents to continue the stream 

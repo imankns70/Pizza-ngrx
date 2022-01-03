@@ -9,8 +9,7 @@ import {
 } from '@angular/core';
 import {
   FormControl,
-  FormGroup,
-  FormArray,
+  FormGroup,  
   FormBuilder,
   Validators,
 } from '@angular/forms';
@@ -22,6 +21,7 @@ import { Topping } from '../../models/topping.model';
 
 @Component({
   selector: 'pizza-form',
+  changeDetection:ChangeDetectionStrategy.OnPush,
   styleUrls: ['pizza-form.component.scss'],
   template: `
  

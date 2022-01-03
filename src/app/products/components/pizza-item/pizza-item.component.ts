@@ -4,8 +4,8 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
 @Component({
   selector: 'pizza-item',
   styleUrls: ['./pizza-item.component.scss'],
-  template: `   <div class="pizza-item">
-  <a [routerLink]="['/products', pizza.id]">
+  template: `<div class="pizza-item">
+  <a [routerLink]="['/products', pizza?.id]">
     <pizza-display
       [pizza]="pizza">
     </pizza-display>

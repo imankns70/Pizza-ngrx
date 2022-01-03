@@ -68,6 +68,7 @@ export class PizzasService {
 
           }
         }),
+        map(()=> payload)
       )
     //catchError((error: any) => throwError(error.json())));
   }
