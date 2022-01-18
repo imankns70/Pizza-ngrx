@@ -10,8 +10,8 @@ import { ApiResult } from '../models/api-result';
 
 @Injectable()
 export class ToppingsService {
-  apiUrl = 'https://localhost:44395/api/pizza';
-  //apiUrl = 'https://localhost:44341/api/pizza';
+  //apiUrl = 'https://localhost:44395/api/pizza';
+  apiUrl = 'https://localhost:44341/api/pizza';
 
   constructor(private http: HttpClient) { }
 
