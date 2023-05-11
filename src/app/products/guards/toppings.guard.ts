@@ -31,10 +31,10 @@ export class ToppingsGuard implements CanActivate {
                         this.store.dispatch(new fromStore.LoadToppings())
                     }
                 }),
-                // if loaded is false then the filter prevents to continue the stream 
-                // filter make it sure 100 precent to load pizzas  to continue the stream 
+                // if loaded is false then the filter operator prevents to continue the stream 
+                // filter operator make it sure 100 precent to load pizzas  to continue the stream 
                 filter(loaded => loaded),
-                // the take makes the stream to be done 
+                // the take operator makes the stream to be done 
                 // do the same subscribtion does
                 take(1)
 

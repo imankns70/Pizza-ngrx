@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { PizzasEffects } from './pizzas.effect';\nimport { ToppingsEffect } from './toopings.effects';\nexport const effects = [PizzasEffects, ToppingsEffect];\nexport * from './pizzas.effect';\nexport * from './toopings.effects';","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

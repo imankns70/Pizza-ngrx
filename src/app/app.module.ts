@@ -6,7 +6,8 @@ import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router
 import { StoreModule, MetaReducer } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { reducers, effects, customSerializer } from './store';
+//import { reducers, effects, customSerializer } from './store';
+import * as fromStore from './store';
 
 
 // not used in production
@@ -14,10 +15,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { storeFreeze } from 'ngrx-store-freeze';
 
 // this would be done dynamically with webpack for builds
-const environment = {
-  development: true,
-  production: false,
-};
+ 
 export const metaReducers: MetaReducer<any>[] = !environment.production
   ? [storeFreeze]
   : [];
@@ -25,6 +23,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
 
 // bootstrap
 import { AppComponent } from './app.component';
+import { environment } from 'src/environments/environment';
 
 // routes
 export const ROUTES: Routes = [
@@ -40,14 +39,14 @@ export const ROUTES: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(ROUTES),
-    StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot(effects),
+    StoreModule.forRoot(fromStore.reducers, { metaReducers }),
+    EffectsModule.forRoot(fromStore.effects),
     StoreRouterConnectingModule.forRoot({
-      serializer: customSerializer
+      serializer: fromStore.customSerializer
     }),
     environment.development ? StoreDevtoolsModule.instrument() : [],
   ],
-  providers: [{ provide: RouterStateSerializer, useClass: customSerializer }],
+  providers: [{ provide: RouterStateSerializer, useClass: fromStore.customSerializer }],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
 })

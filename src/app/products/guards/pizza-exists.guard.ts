@@ -16,8 +16,8 @@ export class PizzaExistsGuard implements CanActivate {
 
         return this.checkStore().pipe(
             switchMap(() => {
-                const id = parseInt(route.params.pizzaId, 10);
-                return this.hashPizza(id);
+                const pizzaId = parseInt(route.params.pizzaId, 10);
+                return this.hashPizza(pizzaId);
             })
         )
 

@@ -100,7 +100,7 @@ describe('PizzasReducer', () => {
         name: 'Pizza #2',
         toppings: [{ id: 1, name: 'basil' }],
       };
-      const entities = {
+      const entities: { [key: number]: Pizza } = {
         1: pizzas[0],
         2: pizzas[1],
       };
@@ -114,25 +114,53 @@ describe('PizzasReducer', () => {
     });
   });
 
-  describe('REMOVE_PIZZA_SUCCESS action', () => {
+  // describe('REMOVE_PIZZA_SUCCESS action', () => {
+  //   it('should remove the pizza', () => {
+  //     const pizzas: Pizza[] = [
+  //       { id: 1, name: 'Pizza #1', toppings: [] },
+  //       { id: 2, name: 'Pizza #2', toppings: [] },
+  //     ];
+  //     const entities:{ [key: number]: Pizza } = {
+  //       1: pizzas[0],
+  //       2: pizzas[1],
+  //     };
+  //     const { initialState } = fromPizzas;
+  //     const previousState = { ...initialState, entities };
+  //     const action = new fromActions.RemovePizzaSuccess(pizzas[0]);
+  //     const state = fromPizzas.reducer(previousState, action);
+
+  //     expect(Object.keys(state.entities).length).toEqual(1);
+  //     expect(state.entities).toEqual({ 2: pizzas[1] });
+  //   });
+  // });
+
+  describe('REMOVE_PIZZA_SUCCESS Action', () => {
+
     it('should remove the pizza', () => {
+
       const pizzas: Pizza[] = [
-        { id: 1, name: 'Pizza #1', toppings: [] },
-        { id: 2, name: 'Pizza #2', toppings: [] },
+        { id: 1, name: 'pizza #1', toppings: [] },
+        { id: 2, name: 'pizza #2', toppings: [] }
       ];
-      const entities:{ [key: number]: Pizza } = {
+
+      const entities: { [key: number]: Pizza } = {
         1: pizzas[0],
-        2: pizzas[1],
-      };
-      const { initialState } = fromPizzas;
+        2: pizzas[1]
+      }
+
+      const { initialState } = fromPizzas
       const previousState = { ...initialState, entities };
+
       const action = new fromActions.RemovePizzaSuccess(pizzas[0]);
+
       const state = fromPizzas.reducer(previousState, action);
 
       expect(Object.keys(state.entities).length).toEqual(1);
-      expect(state.entities).toEqual({ 2: pizzas[1] });
-    });
-  });
+      expect(state.entities).toEqual({ 2: pizzas[1] })
+
+    })
+  })
+
 });
 
 describe('PizzasReducer Selectors', () => {
@@ -155,7 +183,7 @@ describe('PizzasReducer Selectors', () => {
       const { initialState } = fromPizzas;
       const previousState = { ...initialState, loading: true };
       const slice = fromPizzas.getPizzaLoading(previousState);
-      
+
 
       expect(slice).toEqual(true);
     });

@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { RouterEffects } from './router.effects';\nexport const effects = [RouterEffects];\nexport * from './router.effects';","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

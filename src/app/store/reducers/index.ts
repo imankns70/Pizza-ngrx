@@ -1,6 +1,7 @@
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Params } from '@angular/router';
 import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
 import * as fromRouter from '@ngrx/router-store';
+ 
 
 export interface RouterStateUrl {
     url: string,

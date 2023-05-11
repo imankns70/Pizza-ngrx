@@ -48,7 +48,7 @@ export class PizzaToppingsComponent implements ControlValueAccessor {
   }
 
   writeValue(value: Topping[]) {
-    
+  
     this.value = value;
   }
 

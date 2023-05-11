@@ -20,7 +20,7 @@ export class PizzasGuard implements CanActivate {
         )
     }
 
-
+ 
     checkStore(): Observable<boolean> {
         return this.store.select(fromStore.getPizzasLoaded)
             .pipe(
@@ -34,7 +34,7 @@ export class PizzasGuard implements CanActivate {
                 // if loaded is false then the filter prevents to continue the stream 
                 // filter make it sure 100 precent to load pizzas  to continue the stream 
                 filter(loaded => loaded),
-                // the take makes the stream to be done 
+                // the take operator makes the stream to be done 
                 // do the same subscribtion does
                 take(1)
 

@@ -42,7 +42,9 @@ import { Topping } from '../../models/topping.model';
             <p>Pizza must have a name</p>
           </div>
         </label>
-      
+        <!-- <pizza-display
+      [pizza]="pizza">
+    </pizza-display> -->
         <ng-content></ng-content>
         <label>
           <h4>Select toppings</h4>
@@ -106,11 +108,12 @@ export class PizzaFormComponent implements OnChanges {
     return this.nameControl.hasError('required') && this.nameControl.touched;
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-  
+  ngOnChanges(changes: SimpleChanges) { 
+ 
     if (this.pizza && this.pizza.id) {
       this.exists = true;
-      this.form.patchValue(this.pizza);
+      this.form.patchValue(this.pizza); 
+    
     }
     this.form
       .get('toppings')
@@ -119,7 +122,7 @@ export class PizzaFormComponent implements OnChanges {
         map(toppings => toppings.map((topping: Topping) => topping.id))
       )
       .subscribe(value => {
-      
+       
         this.selected.emit(value)
       }   );
   }
@@ -134,7 +137,7 @@ export class PizzaFormComponent implements OnChanges {
 
   updatePizza(form: FormGroup) {
     const { value, valid, touched } = form;
-    if (touched && valid) {
+    if (touched && valid) {    
       this.update.emit({ ...this.pizza, ...value });
     }
   }

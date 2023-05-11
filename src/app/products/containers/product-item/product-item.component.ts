@@ -10,7 +10,7 @@ import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'product-item',
-  changeDetection:ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./product-item.component.scss'],
   template: `
       <div 
@@ -38,7 +38,8 @@ export class ProductItemComponent implements OnInit {
   ngOnInit() {
 
     this.pizza$ = this.store.select(fromStore.getSelectedPizza).pipe(
-      tap((pizza: Pizza) => {
+      tap((pizza: Pizza = null) => {
+
         const pizzaExist = !!(pizza && pizza.id)
         const toppings = pizzaExist
           ? pizza.toppings.map(topping => topping.id)
@@ -46,8 +47,8 @@ export class ProductItemComponent implements OnInit {
         this.store.dispatch(new fromStore.VisualiseToppings(toppings))
       })
     );
-    this.toppings$ = this.store.select(fromStore.getAllToppings);
     this.visualise$ = this.store.select(fromStore.getPizzaVisualised);
+    this.toppings$ = this.store.select(fromStore.getAllToppings);
 
   }
   onSelect(event: number[]) {
@@ -60,6 +61,7 @@ export class ProductItemComponent implements OnInit {
   }
 
   onUpdate(event: Pizza) {
+
     this.store.dispatch(new fromStore.UpdatePizza(event))
   }
 

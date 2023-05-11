@@ -75,7 +75,7 @@ export class PizzasEffects {
 
     )
     )
-    // handle update and remove the pizza
+    // handle create and update and remove the pizza
     handlePizzaSuccess$ = createEffect(() => this.action$.pipe(
         ofType(
             pizzaActions.CREATE_PIZZA_SUCCESS,
